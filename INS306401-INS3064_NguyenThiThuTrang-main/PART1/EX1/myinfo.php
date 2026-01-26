@@ -13,7 +13,7 @@
 
     <style>
         :root {
-            --primary-color: #4f46e5; 
+            --primary-color: #4f46e5; /* Indigo */
             --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
             --bg-gradient: linear-gradient(135deg, #f0f4ff 0%, #e0e7ff 100%);
             --text-main: #1f2937;
@@ -50,6 +50,7 @@
             position: relative;
         }
         
+        /* Header thiết kế lại nhẹ nhàng hơn */
         .header {
             background: var(--primary-gradient);
             color: white;
@@ -175,7 +176,7 @@
             font-weight: 800;
             margin-top: 5px;
             letter-spacing: -0.5px;
-            font-variant-numeric: tabular-nums; 
+            font-variant-numeric: tabular-nums; /* Giúp số không bị nhảy khi thay đổi giây */
         }
     </style>
 </head>
@@ -187,7 +188,7 @@
                     <i class="fa-solid fa-user"></i>
                 </div>
             </div>
-            <h1>Nguyễn Thị Thu Trang</h1>
+            <h1>Giang Lê Hiệp</h1>
             <p>Hồ sơ sinh viên</p>
         </div>
         
@@ -234,7 +235,7 @@
     <script>
         function updateTime() {
             const now = new Date();
-    
+            // Viết hoa chữ cái đầu cho Thứ
             const options = { 
                 weekday: 'long', 
                 year: 'numeric', 
@@ -244,10 +245,11 @@
                 minute: '2-digit',
                 second: '2-digit'
             };
-            
+            // Format lại chuỗi thời gian cho gọn gàng hơn
             let timeString = now.toLocaleDateString('vi-VN', options);
             
-           
+            // Tùy chỉnh hiển thị nếu cần (Ví dụ: Thứ Hai, 14/07/2005 - 10:30:45)
+            // Hoặc giữ nguyên mặc định
             document.getElementById('currentTime').textContent = timeString;
         }
         

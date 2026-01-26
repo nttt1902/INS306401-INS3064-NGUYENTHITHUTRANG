@@ -19,6 +19,7 @@
             --bg-color: #f0f0f0;
             --card-color: #ffffff;
             
+            /* Palette màu Neo Pop */
             --color-purple: #a855f7;
             --color-yellow: #facc15;
             --color-blue: #3b82f6;
@@ -31,7 +32,7 @@
         body {
             font-family: 'Lexend', sans-serif;
             background-color: #e0e7ff;
-           
+            /* Tạo hoạ tiết chấm bi nền */
             background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
             background-size: 20px 20px;
             min-height: 100vh;
@@ -41,21 +42,21 @@
             padding: 20px;
         }
 
-       
+        /* --- Main Container --- */
         .main-card {
             display: flex;
             width: 100%;
             max-width: 800px;
             background: var(--card-color);
-            border: 4px solid var(--border-color); 
+            border: 4px solid var(--border-color); /* Viền bao ngoài cực dày */
             border-radius: 20px;
-            
+            /* Bóng đổ cứng (Hard Shadow) */
             box-shadow: 10px 10px 0px var(--border-color);
             overflow: hidden;
-            flex-wrap: wrap; 
+            flex-wrap: wrap; /* Để responsive trên mobile */
         }
 
-       
+        /* --- Cột Trái (Màu nền đậm) --- */
         .left-panel {
             flex: 2;
             min-width: 300px;
@@ -86,7 +87,7 @@
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 10px;
-            text-shadow: 3px 3px 0px #000; 
+            text-shadow: 3px 3px 0px #000; /* Chữ cũng có bóng cứng */
         }
 
         .greeting-section p {
@@ -108,7 +109,7 @@
             50% { transform: translateY(-10px); }
         }
 
-        
+        /* --- Cột Phải (Thông tin) --- */
         .right-panel {
             flex: 3;
             min-width: 320px;
@@ -118,7 +119,7 @@
             gap: 20px;
         }
 
-        
+        /* Các khối thông tin con (Info Boxes) */
         .info-box {
             background: white;
             border: var(--border-width) solid var(--border-color);
@@ -130,6 +131,7 @@
             align-items: center;
         }
 
+        /* Hiệu ứng nhấn nút khi hover */
         .info-box:hover {
             transform: translate(2px, 2px);
             box-shadow: 2px 2px 0px var(--border-color);
@@ -162,12 +164,12 @@
             color: black;
         }
 
-        
+        /* Màu riêng cho từng box */
         .box-yellow { background-color: var(--color-yellow); }
         .box-blue { background-color: var(--color-blue); color: white; }
         .box-pink { background-color: var(--color-pink); }
         
-        
+        /* Box tiến độ (Full width) */
         .progress-wrapper {
             background: white;
             border: var(--border-width) solid var(--border-color);
@@ -196,11 +198,11 @@
         .progress-fill {
             height: 100%;
             background: var(--color-green);
-            border-right: 2px solid var(--border-color); 
+            border-right: 2px solid var(--border-color); /* Viền phải của thanh load */
             width: 50%;
             transition: width 1s ease;
             
-            
+            /* Hoạ tiết sọc chéo cho thanh progress */
             background-image: linear-gradient(
                 45deg, 
                 rgba(0,0,0,0.1) 25%, 
@@ -214,7 +216,7 @@
             background-size: 20px 20px;
         }
 
-      
+        /* Responsive Mobile */
         @media (max-width: 768px) {
             .left-panel { border-right: none; border-bottom: 4px solid var(--border-color); }
         }
@@ -277,13 +279,15 @@
         function updateUI() {
             const now = new Date();
 
+            // 1. Cập nhật Giờ
             document.getElementById('clock').innerText = now.toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'});
 
+            // 2. Logic Chào hỏi & Màu sắc
             const h = now.getHours();
             let greet = "CHÀO BUỔI SÁNG";
             let sub = "Năng lượng đỉnh cao! ⚡";
             let icon = '<i class="fa-solid fa-cloud-sun"></i>';
-            let color = "#8b5cf6"; 
+            let color = "#8b5cf6"; // Tím mặc định
 
             if (h >= 5 && h < 12) {
                 // Sáng giữ nguyên tím
@@ -291,26 +295,26 @@
                 greet = "CHÀO BUỔI CHIỀU";
                 sub = "Giữ vững phong độ nhé! 🔥";
                 icon = '<i class="fa-solid fa-sun"></i>';
-                color = "#3b82f6"; 
+                color = "#3b82f6"; // Xanh dương
                 
             } else {
                 greet = "CHÀO BUỔI TỐI";
                 sub = "Thư giãn thôi nào 🌙";
                 icon = '<i class="fa-solid fa-moon"></i>';
-                color = "#1e293b"; 
+                color = "#1e293b"; // Xanh đen
             }
 
-            document.getElementById('greeting').innerHTML = greet.replace(" ", "<br>"); 
+            document.getElementById('greeting').innerHTML = greet.replace(" ", "<br>"); // Xuống dòng cho đẹp
             document.getElementById('timeText').innerText = sub;
             document.getElementById('weatherIcon').innerHTML = icon;
             document.getElementById('panelBg').style.background = color;
 
-            
+            // 3. Ngày tháng
             const days = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
             const dateStr = `${days[now.getDay()]}, ${now.getDate()}/${now.getMonth()+1}`;
             document.getElementById('fullDate').innerText = dateStr;
 
-            
+            // 4. Tiến độ tháng
             const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
             const today = now.getDate();
             const left = lastDay - today;
